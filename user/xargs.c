@@ -16,13 +16,10 @@ int main(int argc, char *argv[])
   // xarg的第一个参数 就是要执行的命令
   // 其余的是该程序运行的参数
   char *cmd = argv[1];
-  // line是作为参数使用的
   char line[LINE];
-  // char *p=gets(line,LINE);
   char *params[PARAMS];
   int index = 0;
-  // 例如：xargs echo hello,这样的，已经带了参数，就要把参数设置到
-  // 最终执行时需要的参数数组里
+  
   params[index++] = cmd;
   for (int i = 2; i < argc; i++)
   {
@@ -44,7 +41,6 @@ int main(int argc, char *argv[])
           t[c]='\0';
           // 从标准输入读进来的也放进params
           params[index++] = t;
-          // memset(t,0,LINE);
           c=0;
           t = (char *)malloc(sizeof(char) * LINE);
         }else

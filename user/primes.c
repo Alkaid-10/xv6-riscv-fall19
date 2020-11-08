@@ -14,14 +14,14 @@ main(int argc, char *argv[])
   for (i = 2; i <= 35; i++) {
     numbers[cnt++] = i;
   }
-  // 注意fork是在这个循环内进行的
+  
   while (cnt > 0) {
     pipe(fd);
 
-    //子进程里
+    //子进程
     if (fork() == 0) {
       int prime, this_prime = 0;
-      // 关闭写的一端
+      // 关闭写
       close(fd[W]);
       cnt = -1;
       // 读的时候，如果父亲还没写，就会block
@@ -36,15 +36,10 @@ main(int argc, char *argv[])
           if (prime % this_prime != 0) numbers[cnt++] = prime;
         }
       }
-
-      
-      // printf("pid %d ,prime %d\n",getpid(),this_prime);
-        printf("prime %d\n",this_prime);
+      printf("prime %d\n",this_prime);
       // 关闭读
       close(fd[R]);
-      // WARN 注意！这里子进程并没有结束！子进程接下来继续执行while循环（cnt>0
-      // 然后接着fork，注意此时子进程的子进程会获得和子进程一样的cnt和numbers
-      // 也就是筛过的，而不是原始的
+      
     } 
     
 

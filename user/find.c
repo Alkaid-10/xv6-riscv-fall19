@@ -1,8 +1,3 @@
-
-/*
-    Usage： find path name
-    实现在给定路径的文件夹树中找到全部匹配name的
-*/
 #include "kernel/types.h"
 #include "kernel/stat.h"
 #include "user/user.h"
@@ -28,7 +23,7 @@ char *getLastElem(char *p){
 }
 
 void find(char* path,char *name){
-    // printf("find (%s,,fmt(path):%s,fmtlen:%d,%s)\n",path,fmtname(path),strlen(fmtname(path)),name);
+    
     char buf[512], *p=0;
     int fd;
     struct dirent de;
@@ -82,8 +77,7 @@ void find(char* path,char *name){
  
 }
 int main(int argc,char* argv[]){
-    // 这里为了简单，假定一定按照usage使用
-    // 实际上如果只有一个参数，那么搜索路径为当前路径
+    
     if(argc<3){
         exit();
     }
