@@ -22,7 +22,7 @@ int main(){
             exit();
         }
         //输出获取到的字符
-        printf("son:%d: received ping\n",getpid());
+        printf("%d: received ping\n",getpid());
         //将待写入的字符写入pipe的写入端
         if(write(pFaReadSonWrite[1],buffer,length)!=length){
             printf("son:son to fa error!\n");
@@ -44,7 +44,7 @@ int main(){
         exit();
     }
     //打印读出的字符
-    printf("fa:%d: received pong\n",getpid());
+    printf("%d: received pong\n",getpid());
     //等待子进程退出
     wait();
     exit();
